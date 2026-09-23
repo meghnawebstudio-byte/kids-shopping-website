@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Happy Kids Store 🧸🌈</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- OFFER BAR -->
+<div class="offer-bar">
+    🎉 Special Offer! Up to 30% OFF on selected products 🎁
+</div>
+
+<!-- HEADER -->
+<header>
+
+    <div class="logo">
+        🌈 Happy Kids Store 🧸
+    </div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#categories">Categories</a>
+        <a href="#products">Products</a>
+        <a href="#wishlist">
+            ❤️ Wishlist <span id="wishlistCount">0</span>
+        </a>
+        <a href="#cart">
+            🛒 Cart <span id="cartCount">0</span>
+        </a>
+        <a href="#account">👤 Account</a>
+    </nav>
+
+</header>
+
+<!-- HERO -->
+<section id="home" class="hero">
+
+    <div class="hero-content">
+
+        <span class="hero-badge">
+            ✨ Welcome Little Stars ✨
+        </span>
+
+        <h1>
+            Welcome to Happy Kids Store! 🌈
+        </h1>
+
+        <p>
+            Fun, colorful and cute products made for little stars ⭐
+        </p>
+
+        <button onclick="scrollToProducts()">
+            🛍️ Shop Now
+        </button>
+
+    </div>
+
+    <div class="hero-emoji">
+        🧸 🎨 🚗 🎒 🪁 🧩
+    </div>
+
+</section>
+
+<!-- CATEGORIES -->
+<section id="categories" class="section">
+
+    <h2>🎀 Shop by Category</h2>
+
+    <p class="section-subtitle">
+        Choose something fun for your little one! 🌟
+    </p>
+
+    <div class="categories">
+
+        <button onclick="filterProducts('All')">🌟 All</button>
+        <button onclick="filterProducts('Toys')">🧸 Toys</button>
+        <button onclick="filterProducts('Art')">🎨 Art</button>
+        <button onclick="filterProducts('Vehicles')">🚗 Vehicles</button>
+        <button onclick="filterProducts('School')">🎒 School</button>
+        <button onclick="filterProducts('Games')">🎮 Games</button>
+
+    </div>
+
+</section>
+
+<!-- PRODUCTS -->
+<section id="products" class="section">
+
+    <h2>⭐ Our Products</h2>
+
+    <p class="section-subtitle">
+        Discover fun and exciting products! 🛍️
+    </p>
+
+    <div class="search-box">
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="🔎 Search for a product..."
+            oninput="searchProducts()">
+
+    </div>
+
+    <div id="productsContainer" class="products"></div>
+
+</section>
+
+<!-- WISHLIST -->
+<section id="wishlist" class="section special-section">
+
+    <h2>❤️ My Wishlist</h2>
+
+    <p class="section-subtitle">
+        Your favorite products are saved here! 💖
+    </p>
+
+    <div id="wishlistContainer"></div>
+
+</section>
+
+<!-- CART -->
+<section id="cart" class="section cart-section">
+
+    <h2>🛒 My Cart</h2>
+
+    <p class="section-subtitle">
+        Your selected products are waiting for you! 🎁
+    </p>
+
+    <div id="cartContainer"></div>
+
+    <div class="cart-summary">
+
+        <div class="summary-title">
+            🧾 Order Summary
+        </div>
+
+        <div class="summary-row">
+            <span>Items</span>
+            <strong id="totalItems">0</strong>
+        </div>
+
+        <div class="summary-row">
+            <span>Subtotal</span>
+            <strong>₹<span id="totalPrice">0</span></strong>
+        </div>
+
+        <div class="summary-row">
+            <span>Delivery</span>
+            <strong class="free-delivery">
+                FREE 🎉
+            </strong>
+        </div>
+
+        <div class="summary-line"></div>
+
+        <div class="summary-total">
+            <span>Total</span>
+            <strong>₹<span id="finalPrice">0</span></strong>
+        </div>
+
+        <button
+            class="checkout-btn"
+            onclick="openCheckout()">
+            🛍️ Proceed to Checkout
+        </button>
+
+        <p class="secure-text">
+            🔒 Demo checkout
+        </p>
+
+    </div>
+
+</section>
+
+<!-- ACCOUNT -->
+<section id="account" class="section account-section">
+
+    <h2>👤 My Account</h2>
+
+    <p class="section-subtitle">
+        Login or create your Happy Kids Store account! 🌈
+    </p>
+
+    <div class="account-card">
+
+        <div class="account-tabs">
+
+            <button
+                id="loginTab"
+                class="account-tab active"
+                onclick="showLogin()">
+                🔐 Login
+            </button>
+
+            <button
+                id="signupTab"
+                class="account-tab"
+                onclick="showSignup()">
+                📝 Create Account
+            </button>
+
+        </div>
+
+        <div id="loginForm" class="account-form">
+
+            <h3>Welcome Back! 💖</h3>
+
+            <input
+                type="email"
+                id="loginEmail"
+                placeholder="📧 Email Address">
+
+            <input
+                type="password"
+                id="loginPassword"
+                placeholder="🔒 Password">
+
+            <button
+                class="account-submit"
+                onclick="loginUser()">
+                🚀 Login
+            </button>
+
+        </div>
+
+        <div
+            id="signupForm"
+            class="account-form"
+            style="display:none;">
+
+            <h3>Create Your Account 🎉</h3>
+
+            <input
+                type="text"
+                id="signupName"
+                placeholder="👤 Your Name">
+
+            <input
+                type="email"
+                id="signupEmail"
+                placeholder="📧 Email Address">
+
+            <input
+                type="password"
+                id="signupPassword"
+                placeholder="🔒 Create Password">
+
+            <button
+                class="account-submit"
+                onclick="signupUser()">
+                🎀 Create Account
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FEATURES -->
+<section class="section about">
+
+    <h2>🌟 Why Choose Us?</h2>
+
+    <p class="section-subtitle">
+        Shopping should always be fun! 🌈
+    </p>
+
+    <div class="features">
+
+        <div>
+            <span class="feature-icon">🚚</span>
+            <h3>Fast Delivery</h3>
+            <p>Quick delivery for your little ones.</p>
+        </div>
+
+        <div>
+            <span class="feature-icon">💝</span>
+            <h3>Kid Friendly</h3>
+            <p>Fun and colorful products.</p>
+        </div>
+
+        <div>
+            <span class="feature-icon">🔒</span>
+            <h3>Safe Shopping</h3>
+            <p>Simple and secure demo shopping.</p>
+        </div>
+
+        <div>
+            <span class="feature-icon">⭐</span>
+            <h3>Quality Products</h3>
+            <p>Products selected with care.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- CONTACT -->
+<section class="section contact">
+
+    <h2>📩 Contact Us</h2>
+
+    <p class="section-subtitle">
+        Have a question? Send us a message! 💌
+    </p>
+
+    <input
+        type="text"
+        id="contactName"
+        placeholder="Your Name">
+
+    <input
+        type="email"
+        id="contactEmail"
+        placeholder="Your Email">
+
+    <textarea
+        id="contactMessage"
+        placeholder="Your Message"></textarea>
+
+    <button onclick="sendMessage()">
+        Send Message 💌
+    </button>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+
+    <h3>🌈 Happy Kids Store 🧸</h3>
+
+    <p>Made with ❤️ for little stars ⭐</p>
+
+    <p>© 2026 Happy Kids Store</p>
+
+</footer>
+
+<!-- PRODUCT MODAL -->
+<div id="productModal" class="modal">
+
+    <div class="modal-content">
+
+        <button
+            class="close-modal"
+            onclick="closeProductModal()">
+            ×
+        </button>
+
+        <div id="modalEmoji" class="modal-emoji"></div>
+
+        <h2 id="modalName"></h2>
+
+        <div id="modalRating" class="rating"></div>
+
+        <p id="modalDescription"></p>
+
+        <div class="modal-price">
+            <span id="modalOldPrice"></span>
+            <strong id="modalPrice"></strong>
+        </div>
+
+        <p id="modalStock" class="stock"></p>
+
+        <button
+            id="modalCartButton"
+            class="buy-btn">
+            🛒 Add to Cart
+        </button>
+
+        <!-- REVIEWS -->
+        <div class="reviews-section">
+
+            <h3>💬 Customer Reviews</h3>
+
+            <div id="reviewsContainer"></div>
+
+            <div class="review-form">
+
+                <h4>⭐ Write Your Review</h4>
+
+                <select id="reviewRating">
+
+                    <option value="5">⭐⭐⭐⭐⭐ 5 Stars</option>
+                    <option value="4">⭐⭐⭐⭐ 4 Stars</option>
+                    <option value="3">⭐⭐⭐ 3 Stars</option>
+                    <option value="2">⭐⭐ 2 Stars</option>
+                    <option value="1">⭐ 1 Star</option>
+
+                </select>
+
+                <input
+                    type="text"
+                    id="reviewName"
+                    placeholder="Your Name">
+
+                <textarea
+                    id="reviewText"
+                    placeholder="Write your review..."></textarea>
+
+                <button
+                    class="review-submit"
+                    onclick="submitReview()">
+                    ⭐ Submit Review
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- CHECKOUT MODAL -->
+<div id="checkoutModal" class="modal">
+
+    <div class="checkout-modal-content">
+
+        <button
+            class="close-modal"
+            onclick="closeCheckout()">
+            ×
+        </button>
+
+        <div class="checkout-icon">
+            🛍️🎁
+        </div>
+
+        <h2>Complete Your Order 🌈</h2>
+
+        <p class="checkout-note">
+            Enter your delivery details below.
+        </p>
+
+        <input
+            type="text"
+            id="customerName"
+            placeholder="👤 Full Name">
+
+        <input
+            type="tel"
+            id="customerPhone"
+            placeholder="📱 Phone Number">
+
+        <textarea
+            id="customerAddress"
+            placeholder="🏠 Delivery Address"></textarea>
+
+        <input
+            type="text"
+            id="customerCity"
+            placeholder="🏙️ City">
+
+        <input
+            type="text"
+            id="customerPincode"
+            placeholder="📮 PIN Code">
+
+        <div class="checkout-final">
+            Total: ₹<span id="checkoutTotal">0</span>
+        </div>
+
+        <button
+            class="place-order-btn"
+            onclick="placeOrder()">
+            🎉 Place Demo Order
+        </button>
+
+    </div>
+
+</div>
+
+<!-- SUCCESS MODAL -->
+<div id="successModal" class="modal">
+
+    <div class="success-card">
+
+        <div class="success-emoji">
+            🎉🧸🎁
+        </div>
+
+        <h2>Yay! Order Placed! 💖</h2>
+
+        <p id="orderMessage">
+            Your order has been created successfully.
+        </p>
+
+        <div class="order-number">
+            Order ID:
+            <strong id="orderNumber"></strong>
+        </div>
+
+        <button
+            class="continue-btn"
+            onclick="closeSuccess()">
+            🌈 Continue Shopping
+        </button>
+
+    </div>
+
+</div>
+
+<!-- CUTE NOTIFICATION -->
+<div
+    id="cuteNotification"
+    class="cute-notification">
+
+    <div
+        id="notificationIcon"
+        class="notification-icon">
+        🌈
+    </div>
+
+    <div class="notification-content">
+
+        <strong id="notificationTitle">
+            Yay!
+        </strong>
+
+        <p id="notificationMessage">
+            Something awesome happened! ✨
+        </p>
+
+    </div>
+
+    <button
+        class="notification-close"
+        onclick="hideNotification()">
+        ×
+    </button>
+
+</div>
+
+<!-- BACK TO TOP -->
+<button
+    id="backToTop"
+    onclick="scrollToTop()">
+    ⬆️
+</button>
+
+<script src="script.js"></script>
+
+</body>
+</html>
